@@ -1,0 +1,51 @@
+name: Bot Ponto SuperBid
+
+on:
+  schedule:
+    # Segunda a Sexta (1-5)
+    - cron: '0 12 * * 1-5' # 09:00 BRT (Entrada)
+    - cron: '0 15 * * 1-5' # 12:00 BRT (Ida Almoço)
+    - cron: '0 16 * * 1-5' # 13:00 BRT (Volta Almoço)
+    - cron: '0 21 * * 1-5' # 18:00 BRT (Saída)
+  
+  # Botão pra rodar manual quando quiser testar
+  workflow_dispatch:
+
+jobs:
+  notificar:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Baixar código do repositório
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Instalar dependências
+        run: pip install -r requirements.txt
+
+      - name: Verificar Horário e Enviar
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          # Pega a hora atual do servidor (UTC)
+          HORA=$(date +%H)
+          echo "Hora atual no servidor (UTC): $HORA"
+
+          # Lógica de Decisão
+          if [ "$HORA" -eq 12 ]; then
+            python bot.py entrada
+          elif [ "$HORA" -eq 15 ]; then
+            python bot.py almoco_ida
+          elif [ "$HORA" -eq 16 ]; then
+            python bot.py almoco_volta
+          elif [ "$HORA" -eq 21 ]; then
+            python bot.py saida
+          else
+            echo "Rodando fora do horário agendado (Teste Manual)"
+            python bot.py geral
+          fi
