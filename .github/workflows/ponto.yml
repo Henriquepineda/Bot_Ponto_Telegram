@@ -6,20 +6,20 @@ on:
     # Brasil (BRT) = UTC - 3
     
     # 09:00 BRT = 12:00 UTC (Seg-Sex)
-    - cron: '0 12 * * 1-5'
+    - cron: '0 11 * * 1-5'
     
     # 12:00 BRT = 15:00 UTC (Seg-Sex)
-    - cron: '0 15 * * 1-5'
+    - cron: '0 14 * * 1-5'
     
     # 13:00 BRT = 16:00 UTC (Seg-Sex)
-    - cron: '0 16 * * 1-5'
+    - cron: '0 15 * * 1-5'
     
     # 16:00 BRT = 19:00 UTC (Seg-Sex)
-    - cron: '0 19 * * 1-5'
+    - cron: '0 17 * * 1-5'
     
-    # 21:00 BRT = 00:00 UTC (Dia Seguinte)
-    # ATENÇÃO: Roda Ter-Sáb (2-6) para corresponder a Seg-Sex no Brasil
-    - cron: '0 0 * * 2-6' 
+    # 20:00 BRT = 00:00 UTC (Dia Seguinte)
+    # ALTERAÇÃO DE HORÁRIO 
+    - cron: '0 23 * * 1-5' 
   
   # Botão manual pra testes
   workflow_dispatch:
