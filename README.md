@@ -26,8 +26,6 @@ O sistema roda 100% na nuvem usando **GitHub Actions** (Serverless). Não é nec
 
 Os horários estão configurados para o fuso de Brasília (BRT / UTC-3):
 
-| Horário (BRT) | Tipo | Mensagem |
-| :--- | :--- | :--- |
  "saida": "🏃 *Fim do expediente padrão!* \n\n🛑 16h! Se seu horário acabou, bate o ponto e até amanhã!",
  "turno_19": "🕖 *Aviso das 19h!* \n\nCheck-point noturno. Se continua logado, foco total ou hora de ir!",
 "turno_21": "🦉 *Modo Corujão (21h)* \n\n⚠️ Hora extra rolando? Não esqueça de registrar. Se já acabou, vai descansar!",
